@@ -10,7 +10,7 @@ ITERATIONS=5
 DELAY=2
 
 # Output file (HTML)
-OUTPUT_FILE="/usr/share/nginx/html/index.html"
+OUTPUT_FILE="./index.html"
 
 # Function to test the API and write output to HTML file
 test_api_performance() {
