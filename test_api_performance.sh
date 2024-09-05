@@ -37,6 +37,8 @@ EOF
   done
 
   echo "</pre></body></html>" >> $OUTPUT_FILE
+
+  echo "API performance test completed."
 }
 
 # Run the API performance test
