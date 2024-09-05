@@ -8,7 +8,7 @@ RUN apk add --no-cache bash curl
 WORKDIR /app
 
 # Copy the Bash script from your local repository into the container
-COPY scripts/test_api_performance.sh /app/test_api_performance.sh
+COPY /test_api_performance.sh /app/test_api_performance.sh
 
 # Make sure the script is executable
 RUN chmod +x /app/test_api_performance.sh
