@@ -9,17 +9,20 @@ ITERATIONS=5
 # Delay between tests in seconds
 DELAY=2
 
-# Function to test the API
+# Output file (HTML)
+OUTPUT_FILE="/usr/share/nginx/html/index.html"
+
+# Function to test the API and write output to HTML file
 test_api_performance() {
-  echo "Testing API: $API_URL"
+  echo "<html><body><h1>API Performance Results</h1><pre>" > $OUTPUT_FILE
 
   for ((i=1;i<=ITERATIONS;i++))
   do
-    echo "------------------------------"
-    echo "Test #$i:"
+    echo "------------------------------" >> $OUTPUT_FILE
+    echo "Test #$i:" >> $OUTPUT_FILE
 
     # Perform a GET request and extract performance metrics
-    curl -o /dev/null -s -w @- "$API_URL" <<'EOF'
+    curl -o /dev/null -s -w @- "$API_URL" <<'EOF' >> $OUTPUT_FILE
       HTTP Status Code:  %{http_code}\n
       Time to connect:   %{time_connect} seconds\n
       Time to start transfer: %{time_starttransfer} seconds\n
@@ -33,9 +36,8 @@ EOF
     sleep "$DELAY"
   done
 
-  echo "API performance test completed."
+  echo "</pre></body></html>" >> $OUTPUT_FILE
 }
 
 # Run the API performance test
 test_api_performance
-
