@@ -13,8 +13,5 @@ COPY test_api_performance.sh /app/test_api_performance.sh
 # Make sure the script is executable
 RUN chmod +x /app/test_api_performance.sh
 
-# Copy the default NGINX configuration file
-COPY default.conf /etc/nginx/conf.d/default.conf
-
-# Run the script and serve the generated output through NGINX
+# Run the script and keep NGINX running to serve the output
 CMD /bin/bash /app/test_api_performance.sh && nginx -g 'daemon off;'
